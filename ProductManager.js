@@ -13,7 +13,6 @@ class ProductManager{
 
     async getLength() {
         const products = await this.getProducts()
-        console.log(products.length)
         return products.length
     }
 
@@ -33,8 +32,6 @@ class ProductManager{
             !product.stock == null) {
             return console.error('Datos incompletos')   
             }
-    
-
 
         const products = await this.getProducts()            
         const newProduct = {
@@ -80,7 +77,8 @@ class ProductManager{
             return product
         }) 
 
-        await fs.promises.writeFile(this.path, JSON.stringify(updatedProducts), 'utf-8')
+    await fs.promises.writeFile(this.path, JSON.stringify(updatedProducts), 'utf-8')
+
     }
 }
 
@@ -124,16 +122,12 @@ const test = async () => {
     const prodUpd2 = await productManager.getProductById(2)
     console.log(prodUpd2)
 
-
     await productManager.updateProduct(10,  {title: "Amiguris UPDATED 10"})
     const prodUpd10 = await productManager.getProductById(10)
     console.log(prodUpd10)
 
     await productManager.deleteProduct(3)
-
     await productManager.deleteProduct(8)
-
-
 }
 
 
